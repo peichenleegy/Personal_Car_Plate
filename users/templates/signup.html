@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	background-color: #e6f2ff;
+	}
+h1   {
+	color: #0033cc;
+    font-family: serif;
+    font-size: 300%;
+	font-weight: bold;
+    border-bottom: 6px solid #0033cc;
+    padding: 10px;
+	}
+p{
+	position: absolute;
+    left: 2%;
+    top: 0;
+    display: block;
+	color: #0033cc;
+    font-family: serif;
+    font-size: 100%;
+	font-weight: bold;
+	}
+	
+input[type=text], input[type=password] {
+  width: 40%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+	}
+
+/* Set a style for all buttons */
+button {
+  background-color: green;
+  color: white;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  position: center;
+	}
+	
+button:hover {
+  opacity: 0.8;
+	}
+.container {
+  padding: 16px;
+	}
+.signup{
+	text-align:center;
+	}
+	
+.signf{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: center;
+	padding: 15px 15px;
+	margin: 70px 350px;
+	}
+label{
+	font-family: serif;
+	font-size: 125%;
+	font-weight: bold;
+	}
+</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+    {% endif %}
+<h1 style="text-align:center"> Sign up </h1>
+<p><a href="{% url 'index' %}">Home Page</a></p>
+
+<div id="signup" class="signup">
+  <form class="signf" method="POST">
+    <div class="container">    
+      <hr>
+        {% csrf_token %}
+        {{ form }}
+      <label for="email"><br>Email</br></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="passw"><br>Password</br></label>
+      <input type="password" placeholder="Enter Password" name="passw" required>
+
+      <label for="passw-repeat"><br>Repeat Password</br></label>
+      <input type="password" placeholder="Repeat Password" name="passw-repeat" required>
+      
+      <label><br>
+        <input type="checkbox" checked="none" name="owner" id="owner" style="margin-bottom:15px"> Owner
+      </label>
+	  <label>
+        <input type="checkbox" name="admin" id="admin" style="margin-bottom:15px">Admin</br>
+      </label>
+      
+      <div class="clearfix">
+	  
+        <button type="button" onclick="this.form.reset();" class="cancelbtn">Cancel</button>
+       <br> <button name="signup" type="submit" class="signupbtn">Sign Up</br></button>
+    </form>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+window.onload = function(){
+	function load(){
+var owner = document.getElementByID("owner");
+var admin = document.getElementByID("admin");
+if (checkbox == owner){
+		document.getElementByID("owner").onclick = function(){
+		location.href = "registration.html";
+		}
+	}
+else if (checkbox == admin){
+			document.getElementByID("owner").onclick = function(){
+			location.href = "search.html";
+			}
+		}
+else {
+	window.alert("Check your details!");}
+	}
+	};
+</script>
+
+</body>
+
+</html>

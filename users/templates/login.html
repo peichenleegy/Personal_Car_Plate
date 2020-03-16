@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	background-color: #e6f2ff;
+	}
+h1   {
+	color: #0033cc;
+    font-family: serif;
+    font-size: 300%;
+	font-weight: bold;
+    border-bottom: 6px solid #0033cc;
+    padding: 10px;
+	}
+input[type=text], input[type=password] {
+  width: 40%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+	}
+/* Set a style for all buttons */
+button {
+  background-color: green;
+  color: white;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  position: center;
+	}
+
+button:hover {
+  opacity: 0.8;
+	}
+
+.container {
+  padding: 16px;
+	}
+	
+.login{
+	text-align:center;
+
+	}
+.loginf{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: center;
+	padding: 15px 15px;
+	margin: 65px 350px;
+}
+label{
+	font-family: serif;
+	font-size: 125%;
+	font-weight: bold;
+	}
+p{
+	position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+	color: #0033cc;
+    font-family: serif;
+    font-size: 100%;
+	font-weight: bold;
+	}
+</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
+</head>
+<body>
+
+<h1 style="text-align:center"> Log into your account </h1>
+<p><a href="{% url 'index' %}">Home Page</a></p>
+
+<div id="login" class="login">
+  <form class="loginf" method="POST" name="data_input">
+    <div class="container">
+            {% csrf_token %}
+            {{ form }}
+      <label for="uname"><br>Email</br></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="passw"><br>Password</br></label>
+      <input type="password" placeholder="Enter Password" name="passw" required>
+        <br>
+		<!-- <label><br>
+        <input type="checkbox" checked="checked" name="owner" style="margin-bottom:15px"> Owner
+      </label>
+	  <label>
+        <input type="checkbox" checked="checked" name="admin" style="margin-bottom:15px">Admin</br>
+      </label> -->
+      <button type="submit" onclick="load()">Login</button>
+    </div>
+    <div class="container">
+      <button type="button" class="cancelbtn" onclick="this.form.reset();">Cancel</button>
+      <br><span class="passw">Forgot <a href="#">password?</br></a></span>
+    </div>
+  </form>
+</div>
+<script>
+window.onload = function(){
+	function load(){
+var owner = document.getElementByID("owner");
+var admin = document.getElementByID("admin");
+if (checkbox == owner){
+		document.getElementByID("owner").onclick = function(){
+		location.href = "profile.html";
+		}
+	}
+else if (checkbox == admin){
+			document.getElementByID("owner").onclick = function(){
+			location.href = "search.html";
+			}
+		}
+else {
+	window.alert("Check you details!");}
+	}
+	};
+</script>
+</body>
+
+</html>

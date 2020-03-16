@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	background-color: #e6f2ff;
+	}
+h1   {
+	color: #0033cc;
+    font-family: serif;
+    font-size: 300%;
+	font-weight: bold;
+ 
+    padding: 0px;
+	text-align: center;
+	}
+div.top{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	}
+p{
+	color: black;
+    font-family: serif;
+    font-size: 175%;
+	font-weight: bold;
+}
+
+#l{
+	position: absolute;
+    left: 2%;
+    top: 0;
+    display: block;
+	color: #0033cc;
+    font-family: serif;
+    font-size: 100%;
+	font-weight: bold;
+	}
+	
+/* Set a style for button */
+button {
+	background-color: green;
+	color: white;
+	padding: 11px 15px;
+	margin: 6px 0;
+	width: 40%;	
+	}
+
+div.profile{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: absolute;
+	left: auto;
+	width: 40%;
+	}
+form.profile{
+	text-align:center;
+	}
+div.carProfile{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: absolute;
+	right: 120px;
+	width: 40%;
+	}
+form.carProfile{
+	text-align:center;
+	}
+input[type=image] {
+	width: 50%;
+	padding: 10px 10px;
+	margin: 6px 0;
+	display: left;
+	box-sizing: border-box;
+	}
+label{
+	font-family: serif;
+	font-size: 110%;
+	font-weight: bold;
+	text-align: center;
+	}
+output[type=text] {
+	width: 50%;
+	padding: 10px 15px;
+	margin: 6px 0;
+	display: inline-block;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: white;
+	font-family: serif;
+    font-size: 100%;
+	font-weight: bold;
+	width: 50%;
+	border: 1px solid #ccc;
+	}
+
+	
+</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile</title>
+</head>
+<body>
+<div id="top" class="top">
+<h1>Profile</h1>
+<p id="l"><a href="{% url 'login' %}">Logout</a></p>
+</div> <br>
+<div id="profile" class="profile">
+  <form class="profile" method="POST">
+		{% csrf_token %}
+        {{ form }}
+	<!-- <p id="l"><a href="{% url 'registration' %}">Update Profile</a></p> -->
+  <p> Owner Details </p>
+   <label name="image" for="image"><br>Vehicle Owner ID</br></label>
+		<input type="image" src="/static/user.png">
+	
+	<label name="name" for="uname"><br>Name：  {{ user.name }}</br></label>
+		
+		
+	
+	<label name="age" for="age"><br>Age：  {{ user.age }}</br></label>
+		
+		
+	
+	<label name="address" for="address"><br>Address：  {{ user.address }}</br></label>
+		
+		
+	
+	<label name="phoneNo" for="phoneNo"><br>Phone Number：  {{ user.phone }}</br></label>
+		
+		
+		
+	<label name="licenceNo" for="licenceNo"><br>Licence Number：  {{ user.license }}</br></label>
+	<button name="update" type="submit" class="signupbtn">Update Profile</br></button>
+		
+	</form>
+</div>
+<div class="carProfile" id="carProfile">
+<form class="carProfile" method="POST">
+	 	{% csrf_token %}
+        {{ form }}
+	<!-- <p id="l"><a href="{% url 'registration' %}">Update Profile</a></p> -->
+	<p> Car Details </p>
+	<label name="carMake"for="carMake"><br>Car Make：  {{ user.car_make }}</br></label>
+		
+		
+		
+	<label name="carModel"for="carModel"><br>Car Model：  {{ user.car_model }}</br></label>
+		
+		
+	
+	<label name="carYear"for="carYaer"><br>Car Year：  {{ user.car_year }}</br></label>
+		
+		
+	
+	<label name="colour" for=""><br>Colour：  {{ user.car_colour }}</br></label>
+		
+		
+	
+	<label name="carPlate" for="carPlate"><br>Car Plate Number：  {{ user.car_plate }}</br></label>
+		
+		
+		
+	<label name="county" for=""><br>County：  {{ user.car_county }}</br></label>
+	<button name="update" type="submit" class="signupbtn">Update Profile</br></button>
+		
+	</form>
+</div>
+
+
+<!--creating footer for webpage
+<div id="footer">
+<footer class="footer mt-auto py-3">
+    <div class="container">
+	<p id="f">Searching and displaying plate</p>
+    </div>
+</footer>
+</div>-->
+
+</body>
+</html>

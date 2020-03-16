@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	background-color: #e6f2ff;
+	}
+
+#searching{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	border-bottom: 6px solid #0033cc;
+    padding: 0px;
+	text-align: center;
+	}
+input[type=text] {
+	width: 60%;
+	padding: 10px 15px;
+	margin: 8px 0;
+	display: inline-block;
+	border: inset 3px solid black;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: #ffff66;
+	font-family: serif;
+    font-size: 300%;
+	font-weight: bold;
+
+	}
+p{
+	color: black;
+    font-family: serif;
+    font-size: 175%;
+	font-weight: bold;
+}
+	
+/* Set a style for button */
+button {
+	background-color: green;
+	color: white;
+	padding: 11px 15px;
+	margin: 6px 0;
+	width: 40%;
+	
+	}
+#s{
+	font-family: serif;
+	font-size: 125%;
+	font-weight: bold;
+	
+	}
+#resultPro{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: absolute;
+	left: auto;
+	width: 40%;
+	}
+#resultCar{
+	border: inset;
+	border-color:#0033cc;
+	background-color: powderblue;
+	position: absolute;
+	right: 120px;
+	width: 40%;
+	
+	}
+input[type=image] {
+	width: 40%;
+	padding: 10px 10px;
+	margin: 6px 0;
+	display: left;
+	box-sizing: border-box;
+
+	}
+#r{
+	font-family: serif;
+	font-size: 110%;
+	font-weight: bold;
+	text-align: right;
+	}
+#footer {
+	background-color: #0033cc;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	height: 5%;
+}
+output[type=text] {
+	width: 50%;
+	padding: 10px 15px;
+	margin: 6px 0;
+	display: inline-block;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: #ffff66;
+	font-family: serif;
+    font-size: 100%;
+	font-weight: bold;
+	background-color: white;
+	}
+form.search{
+	text-align: center;
+	}
+form.resultPro{ 
+	text-align:center;
+	}
+form.resultCar{ 
+	text-align:center;
+	}
+/* Navbar container */
+.navbar{
+  overflow: hidden;
+  background-color: #0033cc;
+  font-family: courier;
+	}
+
+/* Links inside the navbar */
+.navbar a{
+  float: left;
+  font-size: 16px;
+  color: #FFE4C4;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+ 
+	}
+
+/* The dropdown container */
+.dropdown{
+  float: left;
+  overflow: hidden;
+	}
+
+/* Dropdown button */
+.dropdown .dropbtn{
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+	}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn{
+  background-color: red;
+	}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+	}
+
+/* Links inside the dropdown */
+.dropdown-content a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+	}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover{
+  background-color: #ddd;
+	}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content{
+  display: block;
+	}
+</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search Page</title>
+</head>
+<body>
+<div class="top" id="top">
+<div class="navbar">
+  <div class="dropdown">
+    <button class="dropbtn">Menu
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'login' %}">Logout</a>
+      <a href="partial.html">Partial Search</a>
+    </div>
+  </div>
+</div>
+<div id="searching" class="searching">
+  <form class="search" method="POST">
+		{% csrf_token %}
+      <label id ="s" for="search"><br>Find Personalised Registration Plate Information Full Search</br></label>
+      <input type="text" placeholder=" FULL SEARCH" name="car_plate" required><br>
+      <button type="searching">Search</button></br>
+	</form>
+</div><br>
+
+<div id="resultPro" class="resultPro">
+  <form class="resultPro">
+  <p> Owner Details </p>
+   <label id="r" name="image" for="image"><br>Vehicle Owner ID</br></label>
+		<input type="image" src="/static/user.png">
+	
+	<label id="r" name="name" for="uname"><br>Name</br></label>
+	<label name="name" for="uname"><br>{{ user.name }}</br></label>
+	
+	<label id="r" name="dob" for="dob"><br>Age</br></label>
+	<label name="age" for="age"><br>{{ user.age }}</br></label>
+	
+	<label id="r" name="address" for="address"><br>Address</br></label>
+	<label name="address" for="address"><br>{{ user.address }}</br></label>
+	
+	<label id="r" name="phoneNo" for="phoneNo"><br>Phone Number</br></label>
+	<label name="phoneNo" for="phoneNo"><br>{{ user.phone }}</br></label>
+		
+	<label id="r" name="licenceNo" for="licenceNo"><br>Licence Number</br></label>
+	<label name="licenceNo" for="licenceNo"><br>{{ user.license }}</br></label>
+	</form>
+</div>
+<div class="resultCar" id="resultCar">
+<form class="resultCar"> 
+	<p> Car Details </p>
+	<label id="r" name="carMake" for="carMake"><br>Car Make</br></label>
+	<label name="carMake"for="carMake"><br>{{ user.car_make }}</br></label>
+		
+	<label id="r" name="carModel" for="carModel"><br>Car Model</br></label>
+	<label name="carModel"for="carModel"><br>{{ user.car_model }}</br></label>
+	
+	<label id="r" name="carYear" for="carYaer"><br>Car Year</br></label>
+	<label name="carYear"for="carYaer"><br>{{ user.car_year }}</br></label>
+	
+	<label id="r" name="colour" for=""><br>Colour</br></label>
+	<label name="colour" for=""><br>{{ user.car_colour }}</br></label>
+	
+	<label id="r" name="carPlate" for="carPlate"><br>Car Plate Number</br></label>
+	<label name="carPlate" for="carPlate"><br>{{ user.car_plate }}</br></label>
+		
+	<label id="r" name="county" for=""><br>County</br></label>
+	<label name="county" for=""><br>{{ user.car_county }}</br></label>
+	</form>
+</div>
+
+
+<!--creating footer for webpage
+<div id="footer">
+<footer class="footer mt-auto py-3">
+    <div class="container">
+	<p id="f">Searching and displaying plate</p>
+    </div>
+</footer>
+</div>-->
+
+</body>
+</html>
