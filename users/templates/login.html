@@ -77,54 +77,30 @@ p{
 <title>Login</title>
 </head>
 <body>
-
+<!--local layout setting has highest priority-->
 <h1 style="text-align:center"> Log into your account </h1>
 <p><a href="{% url 'index' %}">Home Page</a></p>
-
+<!--submit the form with a POST method-->
 <div id="login" class="login">
   <form class="loginf" method="POST" name="data_input">
     <div class="container">
-            {% csrf_token %}
-            {{ form }}
+            {% csrf_token %} <!--these token must be included while using django-->
+            {{ form }}<!--the form will send the info of Email, Password at the same time-->
       <label for="uname"><br>Email</br></label>
       <input type="text" placeholder="Enter Email" name="email" required>
 
       <label for="passw"><br>Password</br></label>
       <input type="password" placeholder="Enter Password" name="passw" required>
         <br>
-		<!-- <label><br>
-        <input type="checkbox" checked="checked" name="owner" style="margin-bottom:15px"> Owner
-      </label>
-	  <label>
-        <input type="checkbox" checked="checked" name="admin" style="margin-bottom:15px">Admin</br>
-      </label> -->
-      <button type="submit" onclick="load()">Login</button>
+      <button type="submit">Login</button>
     </div>
-    <div class="container">
+    <div class="container"><!--onclick method support to clear the current data in form if the user didn't typing right-->
       <button type="button" class="cancelbtn" onclick="this.form.reset();">Cancel</button>
-      <br><span class="passw">Forgot <a href="#">password?</br></a></span>
+      <br>
     </div>
   </form>
 </div>
 <script>
-window.onload = function(){
-	function load(){
-var owner = document.getElementByID("owner");
-var admin = document.getElementByID("admin");
-if (checkbox == owner){
-		document.getElementByID("owner").onclick = function(){
-		location.href = "profile.html";
-		}
-	}
-else if (checkbox == admin){
-			document.getElementByID("owner").onclick = function(){
-			location.href = "search.html";
-			}
-		}
-else {
-	window.alert("Check you details!");}
-	}
-	};
 </script>
 </body>
 

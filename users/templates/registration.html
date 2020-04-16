@@ -2,6 +2,10 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -74,9 +78,6 @@ div.createProfile{
 form.createProfile{
 	text-align:center;
 	}
-/* form.createCar{
-	
-} */
 div.createCar{
 	border: inset;
 	border-color:#0033cc;
@@ -100,6 +101,10 @@ label{
 	font-weight: bold;
 	text-align: center;
 	}
+img{
+  min-height: 20px;
+  max-width:180px;
+}
 	
 </style>
 <head>
@@ -110,31 +115,39 @@ label{
 <h1>Create profile</h1>
 <p id="l"><a href="{% url 'login' %}">Logout</a></p>
 <div id="createProfile" class="createProfile" class="tabcontent">
-  <form class="createProfile" method="POST">
-	{% csrf_token %}
+<form class="createProfile" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
   <p> Owner Details </p>
-	<label id="r" name="image" for="image" ><br>Vehicle Owner ID</br></label>
-		<input type="image" src="/static/user.png" ><br>
-		<button id="b1" class="b1" type="submit">Upload ID Photo</button></br>
-		
+	<label id="r" for="image" >Vehicle Owner ID</br></label>
+		<div class="image-preview" id="imagePreview">
+				{% ifequal user.image None %} <!--if condition within django -->
+					{% load staticfiles %}<!-- set the default image: user.png -->
+					<img src = "{% static 'user.png' %}" alt="default image"/></br>
+				{% else %}
+					<img name=""/></br>
+				{% endifequal %} <!-- the javascript to show the upload image for previewing -->
+				<input type='file' name="profile_image" id="profile_image"/>
+			</div>
+			
+<!-- the labels of each field and its match input fields-->
 	<label name="name" for="uname"><br>Name</br></label>
-	<!-- <output type="text" placeholder="Name" name="name"><br></output> -->
 		<input type="text" placeholder="Name" name="name" required><br>
 			
-	<label name="dob" for="dob"><br>Date of Birth</br></label>
-	<!-- <output type="text" placeholder="Age" name="age"><br></output> -->
+	<label name="dob" for="dob"><br>Date of Birth</br></br></label>
+	<p6>format: YYYY-MM-DD</br></p6>
+	
 		<input type="text" placeholder="Date of Birth" name="dob" required><br>
 			
 	<label name="address" for="address"><br>Address</br></label>
-	<!-- <output type="text" placeholder="Address" name="address"><br></output> -->
+	
 		<input type="text" placeholder="Address" name="address" required><br>
 			
 	<label name="phoneNo" for="phoneNo"><br>Phone Number</br></label>
-	<!-- <output type="text" placeholder="Phone Number" name="phoneNo"><br></output> -->
+
 		<input type="text" placeholder="Phone Number" name="phoneNo" required><br>
 			
 	<label name="licenceNo" for="licenceNo"><br>Licence Number</br></label>
-	<!-- <output type="text" placeholder="Licence Number" name="licenceNo"><br></output> -->
+
 		<input type="text" placeholder="Licence Number" name="licenceNo" required><br>
 			
 	<button type="submit">Save</button></br>
@@ -145,40 +158,40 @@ label{
 	{% csrf_token %}
 	<p> Car Details </p>
 	<label name="carMake" for="carMake"style="text-align:center"><br>Car Make</br></label>
-	<!-- <output type="text" placeholder="Car Make" name="carMake"><br></output> -->
+
 		<input type="text" placeholder="Car Make" name="carMake"style="text-align:center" required><br>
 		
 	<label name="carModel" for="carModel"><br>Car Model</br></label>
-	<!-- <output type="text" placeholder="Car Model" name="carModel"><br></output> -->
+
 		<input type="text" placeholder="Car Model" name="carModel" required><br>
 		
 	<label name="carYear" for="carYear"><br>Car Year</br></label>
-	<!-- <output type="text" placeholder="Car Year" name="carYaer"><br></output> -->
+
 		<input type="text" placeholder="Car Year" name="carYear" required><br>
 	
 	<label name="colour" for=""><br>Colour</br></label>
-	<!-- <output type="text" placeholder="Colour" name="colour"><br></output> -->
+
 		<input type="text" placeholder="Colour" name="colour"><br>
 	<label  name="county" for=""><br>County</br></label>
-	<!-- <output type="text" placeholder="County" name="county"><br></output> -->
+
 		<input type="text" placeholder="County" name="county"><br>
 		
 	<label name="carPlate" for="carPlate"><br>Car Plate Number</br></label>
-	<!-- <output type="text" placeholder="Plate" name="carPlate"><br></output> -->
+
 		<input type="text" placeholder="Car Number Plate" name="carPlate" required><br>
 		
 	<button type="submit">Save</button></br>
-	</form>
+</form>
 </div>
-
-
-<!--creating footer for webpage
-<div id="footer">
-<footer class="footer mt-auto py-3">
-    <div class="container">
-	<p id="f">Searching and displaying plate</p>
-    </div>
-</footer>
-</div>-->
+<script> // the function for previewing upload image
+		$('#profile_image').on('change', function(e){      
+		  const file = this.files[0];
+		  const objectURL = URL.createObjectURL(file);
+		
+		  $('img').attr('src', objectURL);
+		});
+	  </script>
 </body>
 </html>
+
+

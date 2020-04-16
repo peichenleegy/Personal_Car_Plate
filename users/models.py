@@ -22,6 +22,7 @@ class User(models.Model):
     car_plate = models.CharField(max_length=30,null=True)
     time = models.DateTimeField(auto_now_add=True)
     group = models.IntegerField(null=False)
+    image = models.ImageField(default='user.png', upload_to='media/', blank=True, null=True)
 
     def __str__(self):
         return str(self.email) if self.email else ''

@@ -76,19 +76,19 @@ label{
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sign Up</title>
 </head>
-<body>
+<body> <!--if message variables present, this part will display-->
     {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
+        {% for message in messages %} <!--iterate the message in a messages array-->
+          <div class="alert alert-{{ message.tags }}"> <!--selectively show the alert-->
             {{ message }}
           </div>
         {% endfor %}
     {% endif %}
 <h1 style="text-align:center"> Sign up </h1>
-<p><a href="{% url 'index' %}">Home Page</a></p>
+<p><a href="{% url 'index' %}">Home Page</a></p> <!--href to another page-->
 
 <div id="signup" class="signup">
-  <form class="signf" method="POST">
+  <form class="signf" method="POST"> <!--Although the layout seems like two columns, send all details in one form-->
     <div class="container">    
       <hr>
         {% csrf_token %}
@@ -110,7 +110,7 @@ label{
       </label>
       
       <div class="clearfix">
-	  
+	  <!--if it is invalidate user email and password input, the page won't change, but clear the data by form.reset()-->
         <button type="button" onclick="this.form.reset();" class="cancelbtn">Cancel</button>
        <br> <button name="signup" type="submit" class="signupbtn">Sign Up</br></button>
     </form>
@@ -118,27 +118,5 @@ label{
     </div>
   </form>
 </div>
-<script>
-window.onload = function(){
-	function load(){
-var owner = document.getElementByID("owner");
-var admin = document.getElementByID("admin");
-if (checkbox == owner){
-		document.getElementByID("owner").onclick = function(){
-		location.href = "registration.html";
-		}
-	}
-else if (checkbox == admin){
-			document.getElementByID("owner").onclick = function(){
-			location.href = "search.html";
-			}
-		}
-else {
-	window.alert("Check your details!");}
-	}
-	};
-</script>
-
 </body>
-
 </html>

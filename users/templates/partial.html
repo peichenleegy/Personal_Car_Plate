@@ -111,9 +111,6 @@ form.search{
 form.resultPro{ 
 	text-align:center;
 	}
-form.resultCar{ 
-	text-align:center;
-	}
 /* Navbar container */
 .navbar{
   overflow: hidden;
@@ -194,6 +191,9 @@ div.resultTable{
 	border-color:#0033cc;
 	background-color: powderblue;
 	}
+div.resultCar{
+	text-align: center;
+}
 </style>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -213,28 +213,28 @@ div.resultTable{
   </div>
 </div>
 <div id="searching" class="searching">
-  <form class="search" method="POST">
+  <form class="search" method="POST"> <!--form used for take the input string to find the partial match-->
 		{% csrf_token %}
       <label id ="s" for="search"><br>Find Personalised Registration Plate Information Partial Search</br></label>
       <input type="text" placeholder=" PARTIAL SEARCH" name="partial_plate" required><br>
-      <button type="searching">Search</button></br>
+	  <button type="searching">Search</button>
 	</form>
 </div><br>
 <div id="resultTable" class="resultTable">
 
 <table style="width:100%">
-
+<!--return every match user objects in the users array in a repeating tr and td to make a flexible table-->
 	{% for user in users %}
 	<tr>
 		<td>{{ user.car_county }}</td>
 		<td><a href="signup.html/partial.html/{{ user.car_plate }}/">{{ user.car_plate }}</a></td>
-	</tr>
+	</tr> <!--the car plates will be the link to find the match obj through url -->
 	{% endfor %}
 	
 </table>
 </div> 
 <br>
-
+<!--the certain form details present once user click the car plate number -->
 <div id="resultPro" class="resultPro">
   <form class="resultPro">
   <p> Owner Details </p>
@@ -255,11 +255,11 @@ div.resultTable{
 		
 	<label id="r" name="licenceNo" for="licenceNo"><br>Licence Number</br></label>
 		<label name="licenceNo" for="licenceNo"><br>{{ owner.license }}</br></label>
-	</form>
+	
 </div>
 
 <div class="resultCar" id="resultCar">
-<form class="resultCar"> 
+
 	<p> Car Details </p>
 	<label id="r" name="carMake" for="carMake"><br>Car Make</br></label>
 	<label name="carMake"for="carMake"><br>{{ owner.car_make }}</br></label>
@@ -280,17 +280,5 @@ div.resultTable{
 	<label name="county" for=""><br>{{ owner.car_county }}</br></label>
 	</form>
 </div>
-
-
-
-<!--creating footer for webpage
-<div id="footer">
-<footer class="footer mt-auto py-3">
-    <div class="container">
-	<p id="f">Searching and displaying plate</p>
-    </div>
-</footer>
-</div>-->
-
 </body>
 </html>

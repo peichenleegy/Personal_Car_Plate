@@ -51,7 +51,8 @@ img{
 	width: 40%;
 	height: 40%;
 	}
-div.infoIm1{
+/*layout of the image part*/
+div.infoIm1{ 
 	border-color: #0033cc;
 	
 	}
@@ -73,6 +74,7 @@ h3{
 	border-bottom: 2px solid black;
 	font-size: 150%;	
 	}
+/*layout of the Searching Personalised Vehicle Plates */
 div.info2{
 	border: inset;
 	border-color:#0033cc;
@@ -90,7 +92,7 @@ div.info2{
 <body>
 <div>
 <h1 style="text-align:center"> NEED TO KNOW! </h1>
-<p id="pa"><a href="{% url 'index' %}">Home Page</a></p>
+<p id="pa"><a href="{% url 'index' %}">Home Page</a></p> <!--link to main page-->
 </div>
 <div id="bo" class="bo">
 <div class="info" id="info">
@@ -103,7 +105,8 @@ change the current details. Then when saved the plate and car would be registere
 </p> 
 </div>
 <div id="infoIm1" class="infoIm1">
-<img src="/static/info.jpg">
+{% load staticfiles %} <!--load the static file as the image for src in the next line-->
+<img src="{% static 'info.jpg' %}"/>
 </div>
 <div class="info2" id="info2">
 <h3>Searching Personalised Vehicle Plates</h3>

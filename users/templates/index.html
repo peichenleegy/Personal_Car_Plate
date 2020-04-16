@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> <!--import the angular to set the layout, which is more simpler than bootstrapt-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -106,19 +106,18 @@ img{
   <div class="dropdown">
     <button class="dropbtn">Menu
       <i class="fa fa-caret-down"></i>
-    </button>
+    </button><!--chosing to either login/ sign up/ info page-->
     <div class="dropdown-content">
-      <a href="{% url 'login' %}"> Login </a>
+      <a href="{% url 'login' %}"> Login </a>  <!--url path that link to login.html-->
       <a href="signup.html"> Sign Up </a>
-	  <a href="{% url 'info' %}"> Page Information</a>
+	    <a href="{% url 'info' %}"> Page Information</a>
     </div>
   </div>
 </div>
-<!--chosing to either login or sign up-->
 <h1 style="text-align:center"> Personalised Number Plate Registration and Search! </h1>
 </div>
 <div class="middle" id="middle">
-<img src="/static/plate.jpg">
+<img src="/static/plate.jpg"><!--graph of main page-->
 </div>
 </body>
 </html>

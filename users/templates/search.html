@@ -198,30 +198,30 @@ form.resultCar{
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="{% url 'login' %}">Logout</a>
-      <a href="partial.html">Partial Search</a>
+      <a href="{% url 'login' %}">Logout</a> <!--url of login == ask for user input again-->
+      <a href="partial.html">Partial Search</a> <!--url links is another way of setting url-->
     </div>
   </div>
 </div>
 <div id="searching" class="searching">
-  <form class="search" method="POST">
+  <form class="search" method="POST"> <!--searching string submit in a form-->
 		{% csrf_token %}
       <label id ="s" for="search"><br>Find Personalised Registration Plate Information Full Search</br></label>
-      <input type="text" placeholder=" FULL SEARCH" name="car_plate" required><br>
+	  <input type="text" placeholder=" FULL SEARCH" name="car_plate" required><br> <!--before press button, must fill the field-->
       <button type="searching">Search</button></br>
 	</form>
 </div><br>
 
 <div id="resultPro" class="resultPro">
-  <form class="resultPro">
-  <p> Owner Details </p>
+  <form class="resultPro"> <!--pass an user object from logic layer-->
+  <p> Owner Details </p><!--each label only show info while the database has match user information-->
    <label id="r" name="image" for="image"><br>Vehicle Owner ID</br></label>
 		<input type="image" src="/static/user.png">
 	
 	<label id="r" name="name" for="uname"><br>Name</br></label>
-	<label name="name" for="uname"><br>{{ user.name }}</br></label>
+	<label name="name" for="uname"><br>{{ user.name }}</br></label> <!--{{ }} is a fomat to present data in django-->
 	
-	<label id="r" name="dob" for="dob"><br>Age</br></label>
+	<label id="r" name="dob" for="dob"><br>Age</br></label> <!--user input is DataTime, the system return the calculated age result-->
 	<label name="age" for="age"><br>{{ user.age }}</br></label>
 	
 	<label id="r" name="address" for="address"><br>Address</br></label>
@@ -256,16 +256,5 @@ form.resultCar{
 	<label name="county" for=""><br>{{ user.car_county }}</br></label>
 	</form>
 </div>
-
-
-<!--creating footer for webpage
-<div id="footer">
-<footer class="footer mt-auto py-3">
-    <div class="container">
-	<p id="f">Searching and displaying plate</p>
-    </div>
-</footer>
-</div>-->
-
 </body>
 </html>
