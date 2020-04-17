@@ -13,7 +13,7 @@ urlpatterns = [
     path('signup.html/search.html', views.search, name='search'),
     path('signup.html/partial.html', views.partial, name='partial'),
     url(r'^signup.html/signup.html/partial.html/(?P<car_plate>[-\w]+)/$', views.partialDetail, name='partialSearch'),
-   
+    path('login.html/<email>/profile.html', views.profile, name='profile'),
     path('login.html/<email>/', views.profile, name='profile'),
 
 ]
